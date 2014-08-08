@@ -1,0 +1,255 @@
+a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #990000;
+	text-decoration: none;
+	font-size: 11px;
+}
+a:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #999999;
+	text-decoration: none;
+	font-size: 11px;
+}
+a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #CC0000;
+	font-size: 11px;
+	text-decoration: underline;
+}
+a:active {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #CC0000;
+	text-decoration: underline;
+	font-size: 11px;
+}
+
+
+a.estilo2:link {
+	font-family: Arial, Helvetica, sans-serif;
+	color: ffffff;
+	text-decoration: none;
+	font-size: 11px;
+}
+a.estilo2:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	color: F0F0F0;
+	text-decoration: none;
+	font-size: 11px;
+}
+a.estilo2:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	font-size: 11px;
+	text-decoration: underline;
+}
+a.estilo2:active {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FF0000;
+	text-decoration: none;
+	font-size: 11px;
+}
+
+a.estilo3:link {
+	font-family: Arial, Helvetica, sans-serif;
+	color: 000000;
+	text-decoration: none;
+	font-size: 10px;
+	font-weight: bold;
+}
+a.estilo3:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	color: 333333;
+	text-decoration: none;
+	font-size: 10px;
+	font-weight: bold;
+}
+a.estilo3:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #990000;
+	font-size: 10px;
+	text-decoration: underline;
+	font-weight: bold;
+}
+a.estilo3:active {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	text-decoration: none;
+	font-size: 10px;
+	font-weight: bold;
+}
+.fondo1 {
+	background-image:  url(img/fondo1.jpg);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-color: #990000;
+
+}
+
+.txtitulo {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #CC0000;
+}
+.txsubtitulo {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #990000;
+}
+.texto {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+
+}
+.respuesta {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-align: justify;
+	color: #990000;
+
+}
+.titular {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+.resumen {
+	font-size: 9px;
+	font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+
+}
+.fecha {
+
+	font-size: 10px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FF0000;
+}
+.fondo2 {
+
+	background-image:  url(img/fondo3.jpg);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+.fondotop2 {
+	background-image:  url(img/top3.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.textblanco {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+}
+.fondo3 {
+
+
+	background-image:  url(img/fondo3.jpg);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+.fondotop {
+	background-image:  url(img/top.jpg);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+.SELECT {
+  font-size: 8pt;
+  font-family : Arial, Helvetica, sans-serif;
+  background-color: #f0f0f0;
+}
+.Submit {
+  font-size: 8pt;
+  font-family : Arial, Helvetica, sans-serif;
+  }
+.input {
+  font-size: 8pt;
+  font-family : Arial, Helvetica, sans-serif;
+  }
+.fondo4 {
+	background-image:  url(img/rojo2.jpg);
+	background-repeat:  repeat-y;
+	background-position: right top;
+}
+.fondobot {
+	background-image:  url(img/bot1ct.jpg);
+	image-width: 100%;
+	background-repeat:  repeat-x;
+	background-position: right bottom;
+}
+.homearea {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #990000;
+
+}
+.homeintrod {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #999999;
+
+}
+ul {  
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+ul li {
+	margin:0;
+	padding:0;
+}
+.fondotop3 {
+	background-image: url(funcionario/img/top3.jpg);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+.fondorrhh {
+	background-image: url(funcionario/img/fondo.jpg);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+.textblanco2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+}
+#dek {POSITION:absolute;VISIBILITY:hidden;Z-INDEX:200;
+}
+.Submit2 {
+  font-size: 8pt;
+  font-family : Arial, Helvetica, sans-serif;
+  background-color: #FFFFCC;
+  }
+.textblanco3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.homeintrod2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #999999;
+}
+.SubtitulosTablas2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #FFFFFF;
+	background-color: #990000;
+	text-transform: uppercase;
+
+}
+.texto4 {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}

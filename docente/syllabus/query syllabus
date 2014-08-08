@@ -1,0 +1,187 @@
+SELECT          aes.cdasigna, sig.nmasigna, aes.tipoasig, aes.nrparale,
+                aes.nrrutpro, @trim(nal.nmnombrs)||' '||@trim(nal.nmapepat)||' '||@trim(nal.nmapemat) as NombreCcompleto,
+                aes.cdcarrer, aes.cdunidadacad, aes.nromalla, cta.aaacta , cta.nrsemest,
+   INTO         :n_CdAsignatura,:s_NmAsignatura,:s_CdTpAsigantura,:n_NrParalelo,
+                :n_NrRutProfe,:s_NmProfe,:n_CdCarrera,:n_CdEscuela,:s_NrMalla,:s_Anio,:s_Periodo
+
+FROM   matr.maacta cta, matr.mapaes  aes,matr.maasig sig, rrhh.tgpersonal nal
+WHERE             cta.aaacta            =  2014              and
+                  cta.nrsemest          =  1                 and
+                  aes.nrrutpro          =  9334854           and
+                  aes.aaproce           =  cta.aaacta        and
+                  aes.nrproce           =  cta.nrsemest      and
+                  aes.cdsede            =  cta.cdsede        and
+                  aes.cdunidadacad      =  cta.cdunidadacad  and
+                  aes.cdcarrer          =  cta.cdcarrer      and
+                  aes.nromalla          =  cta.cdplan        and
+                  aes.cdasigna          =  cta.cdasigna      and
+                  aes.tipoasig          =  cta.tipoasig      and
+                  aes.nrparale          =  cta.nrparale      and
+                  aes.cdcarrer         !=   197              and
+                  aes.tipoasig         !=  'AYU'             and
+                  aes.tipoasig         !=  'COR'             and
+                  aes.cdasigna          =  sig.cdasigna      and
+                  aes.nrrutpro          =  nal.nrrutfun
+
+GROUP BY  aes.cdasigna,  sig.nmasigna, aes.nrrutpro, aes.tipoasig, aes.nrparale, nal.nmnombrs, nal.nmapepat, 
+          nal.nmapemat, aes.cdcarrer, aes.cdunidadacad, aes.nromalla, cta.aaacta ,  cta.nrsemest;
+
+
+
+SELECT          aes.cdasigna, sig.nmasigna, aes.tipoasig, aes.nrparale,
+                aes.nrrutpro, @trim(nal.nmnombrs)||' '||@trim(nal.nmapepat)||' '||@trim(nal.nmapemat) as NombreCcompleto,
+                aes.cdcarrer, aes.cdunidadacad, aes.nromalla, cta.aaacta , cta.nrsemest,
+                mc.nmcarrer  as carrera
+   INTO         :n_CdAsignatura,:s_NmAsignatura,:s_CdTpAsigantura,:n_NrParalelo,
+                :n_NrRutProfe,:s_NmProfe,:n_CdCarrera,:n_CdEscuela,:s_NrMalla,:s_Anio,:s_Periodo
+
+FROM   matr.maacta cta, matr.mapaes  aes,matr.maasig sig, rrhh.tgpersonal nal,matr.macarr mc 
+WHERE             cta.aaacta            =  2014              and
+                  cta.nrsemest          =  1                 and
+                  aes.nrrutpro          =  9334854           and
+                  aes.aaproce           =  cta.aaacta        and
+                  mc.cdcarrer           =   aes.cdcarrer     and
+                  aes.nrproce           =  cta.nrsemest      and
+                  aes.cdsede            =  cta.cdsede        and
+                  aes.cdunidadacad      =  cta.cdunidadacad  and
+                  aes.cdcarrer          =  cta.cdcarrer      and
+                  aes.nromalla          =  cta.cdplan        and
+                  aes.cdasigna          =  cta.cdasigna      and
+                  aes.tipoasig          =  cta.tipoasig      and
+                  aes.nrparale          =  cta.nrparale      and
+                  aes.cdcarrer         !=   197              and
+                  aes.tipoasig         !=  'AYU'             and
+                  aes.tipoasig         !=  'COR'             and
+                  aes.cdasigna          =  sig.cdasigna      and
+                  aes.nrrutpro          =  nal.nrrutfun
+
+GROUP BY  aes.cdasigna,  sig.nmasigna, aes.nrrutpro, aes.tipoasig, aes.nrparale, nal.nmnombrs, nal.nmapepat, 
+          nal.nmapemat, aes.cdcarrer, aes.cdunidadacad, aes.nromalla, cta.aaacta ,  cta.nrsemest,  mc.nmcarrer  ;
+
+
+
+
+
+select ma.cdasigna,ma.nmasigna 
+into :n_CdAsignatura, : s_NomAsignatura
+from matr.maasig ma
+where ma.cdasigna in(select re.CDASIGNATURAPRE from corp.cpprerequisito re where re.cdasignatura =571271 );
+
+
+SELECT MA.NRCREDITOS, CP.NRUD
+FROM MATR.MAASIG MA
+INNER JOIN CORP.CPTIPOASIGNATURA CP
+ON(MA.CDASIGNA = CP.CDASIGNATURA)
+WHERE
+MA.CDASIGNA = 571271 AND
+CP.CDTPASIGNATURA = 'CAT';
+
+
+# CAMBIO EN LA COM METODO fn_getUdust
+
+SELECT @COALESCE(MA.NRCREDITOS,0) AS NRCREDITOS, @COALESCE(CP.NRUD,0) AS NRUD, 
+@COALESCE(MA.NRHRSAUTONOMA,0) AS HORAS,
+MA.PERFILEGRESO AS PERFIL
+INTO :n_ust ,:n_ud,:n_horas, :s_perfil
+FROM MATR.MAASIG MA
+INNER JOIN CORP.CPTIPOASIGNATURA CP
+ON(MA.CDASIGNA = CP.CDASIGNATURA)
+WHERE
+MA.CDASIGNA = 571451
+ AND
+CP.CDTPASIGNATURA ='CAT';
+
+
+Set s_ud= SalNumberToStrX(n_ud,0)
+Set s_ust= SalNumberToStrX(n_ust,0)
+Set s_horas= SalNumberToStrX(n_horas,0)
+Set udustJson = udustJson || "{\"ust\":\"" || s_ust || "\",\"ud\":\"" || s_ud  || "\",\"trabajo\":\"" || s_horas || "\",\"perfil\":\"" || s_perfil || "\"},"
+
+# FIN CAMBIO EN LA COM METODO fn_getUdust
+
+
+#EVALUACIONES
+
+SELECT TEST.NRPRUEBA,TEST.PCPRUEBA,TEST.NMPRUEBA, TEST.GLPRUEBA
+ FROM ACAD.MAEPRUEB TEST
+WHERE TEST.CDASIGNA = 571271
+AND TEST.AAASIGNA = 2014
+AND TEST.NRSEMASIG = 1
+AND TEST.CDCARRER = 5
+AND TEST.NRPARALELO = 1
+AND TEST.TPPRUEBA = 'CAT';
+
+
+#UPDATE HORAS Y PERFIL
+
+UPDATE MATR.MAASIG MA
+SET MA.NRHRSAUTONOMA =:n_horas, MA.PERFILEGRESO =:s_perfil
+WHERE
+MA.CDASIGNA =:n_cdAsigna 
+
+idAsig:571109
+hrsAuto:8
+perEgreso:contrib 571109
+
+
+#insert y verificacion
+SELECT * FROM CORP.CPSYSMAESYLLABUS;
+
+
+UPDATE CORP.CPSYSMAESYLLABUS
+SET CDASIGNA = 255677;
+
+
+#Parte 2
+SELECT NRNIVEL,CONTNIVEL,NVNUMERO,CONTNUMERO 
+FROM CORP.CPCONTEASIG
+WHERE CDASIGNATURA = 571109
+AND NVLETRA IS NULL
+ORDER BY NRNIVEL,NVNUMERO;
+
+
+SELECT @COALESCE(MAX(NRNIVEL),0) AS MAXNIVEL, @COALESCE(MAX(NVNUMERO),0) AS MAXSUBNIVEL
+INTO :n_nivel,:n_subnivel
+FROM CORP.CPCONTEASIG
+WHERE CDASIGNATURA = 571109;
+
+delete from CORP.CPCONTEASIG
+WHERE CDASIGNATURA = 571109;
+
+SELECT NRNIVEL,NVNUMERO, @COALESCE(CONTNUMERO,CONTNIVEL) AS SUPERCONTENIDO
+FROM CORP.CPCONTEASIG
+WHERE CDASIGNATURA = 571109
+AND NVLETRA IS NULL
+ORDER BY NRNIVEL,NVNUMERO; //esta la lleva
+
+#Padre
+INSERT INTO CORP.CPCONTEASIG(CDASIGNATURA,NRNIVEL,CONTNIVEL,FCREGISTRO,NMUSER)
+VALUES(:n_cdAsignatura,:n_nivel,s_contnivel,:d_fecha,:s_usuario);
+
+#Hijo
+INSERT INTO CORP.CPCONTEASIG(CDASIGNATURA,NRNIVEL,CONTNIVEL,NVNUMERO,CONTNUMERO,FCREGISTRO,NMUSER) 
+VALUES(:n_cdAsignatura,:n_nivel,:s_contnivel,:n_subnivel,:s_contsubnivel,:d_fecha,:s_usuario);
+
+INSERT INTO CORP.CPSYSCONTEASIG(AAASIGNA,NRSEMASIG,CDCARRER,CDASIGNATURA,NRNIVEL,NVNUMERO,NRSEMANA,FCINICIO,FCTERMINO,NMTEMA,NMACTIVIDAD,NMRECURSO,FCREGISTRO,NMUSER)
+VALUES(:n_anio,:n_semestre,:n_carrera,:n_asigna,:n_padre,:n_hijo,:n_semana,:d_inicio,:d_termino,:s_tema,:s_actividad,:s_recurso,:d_registro,:s_usuario);
+
+INSERT INTO CORP.CPSYSCONTEASIG
+(AAASIGNA,NRSEMASIG,CDCARRER,CDASIGNATURA,NRNIVEL,NVNUMERO,NRSEMANA,FCINICIO,FCTERMINO,NMTEMA,NMACTIVIDAD,NMRECURSO,FCREGISTRO,NMUSER)
+VALUES(:n_anio,:n_semestre,:n_carrera,:n_asigna,:n_padre,:n_hijo,:n_semana,:d_inicio,:d_termino,:s_tema,:s_actividad,:s_recurso,:d_registro,:s_usuario)
+
+INSERT INTO CORP.CPSYSCONTEASIG
+(AAASIGNA,NRSEMASIG,CDCARRER,CDASIGNATURA,NRNIVEL,NVNUMERO,NRSEMANA,FCINICIO,FCTERMINO,CDTEMA,NMTEMA,NMACTIVIDAD,NMRECURSO,FCREGISTRO,NMUSER)
+VALUES
+(2014,1,5,571271,1,1,1,'2014-08-08','2014-08-09',1,'tema','actividad','recurso','2014-08-08','14542091');
+
+SELECT NRSEMANA,FCINICIO,FCTERMINO,CDTEMA,NMTEMA,NMACTIVIDAD,NMRECURSO
+FROM CORP.CPSYSCONTEASIG
+WHERE 
+AAASIGNA = 2014 AND
+NRSEMASIG = 1 AND
+CDCARRER = 5 AND
+CDASIGNATURA = 571271 AND
+NRNIVEL = 1 AND
+NVNUMERO = 1 AND
+NMUSER = 9334854
+ORDER BY NRSEMANA ASC;
